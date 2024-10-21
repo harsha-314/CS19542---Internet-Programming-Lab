@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopGlam</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background: linear-gradient(90deg, #ff6f61, #6fa3ef);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffeb3b; /* Highlight color on hover */
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .product {
+            border: 2px solid #6fa3ef;
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            background-color: #f0f0f0; /* Light background on hover */
+        }
+
+        .add-to-cart {
+            background-color: #ff6f61; /* Button color */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #ff5a3d; /* Darker shade on hover */
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative; /* Change position for footer */
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ShopGlam</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="cart.html">Cart</a></li> <!-- Link to the Cart page -->
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h2>Welcome to ShopGlam</h2>
+            <p>Your one-stop shop for the latest trends!</p>
+        </section>
+
+        <section id="products">
+            <h2>Products</h2>
+            <div class="product">
+                <h3>Dress</h3>
+                <p>Price: $49.99</p>
+                <button class="add-to-cart" onclick="addToCart('Dress', 49.99)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <h3>Bag</h3>
+                <p>Price: $39.99</p>
+                <button class="add-to-cart" onclick="addToCart('Bag', 39.99)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <h3>Shoes</h3>
+                <p>Price: $59.99</p>
+                <button class="add-to-cart" onclick="addToCart('Shoes', 59.99)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <h3>Makeup Kit</h3>
+                <p>Price: $29.99</p>
+                <button class="add-to-cart" onclick="addToCart('Makeup Kit', 29.99)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <h3>Jacket</h3>
+                <p>Price: $89.99</p>
+                <button class="add-to-cart" onclick="addToCart('Jacket', 89.99)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <h3>Sunglasses</h3>
+                <p>Price: $19.99</p>
+                <button class="add-to-cart" onclick="addToCart('Sunglasses', 19.99)">Add to Cart</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 ShopGlam. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        function addToCart(productName, productPrice) {
+            cart.push({ name: productName, price: productPrice });
+            localStorage.setItem('cart', JSON.stringify(cart)); // Save cart to localStorage
+            alert(`${productName} has been added to your cart!`); // Confirmation message
+        }
+    </script>
+</body>
+</html>

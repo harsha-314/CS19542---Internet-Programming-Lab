@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - ShopGlam</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background: linear-gradient(90deg, #ff6f61, #6fa3ef);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffeb3b; /* Highlight color on hover */
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        #cart {
+            margin: 20px;
+            padding: 15px;
+            background-color: #e0f7fa; /* Light cyan background */
+            border-radius: 10px;
+        }
+
+        #cartItems li {
+            padding: 5px 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .order-button {
+            background-color: #ff6f61; /* Button color */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-top: 10px; /* Space above button */
+        }
+
+        .order-button:hover {
+            background-color: #ff5a3d; /* Darker shade on hover */
+        }
+
+        .success-message {
+            color: green;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative; /* Change position for footer */
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Your Cart</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="cart">
+            <h2>Your Cart Items</h2>
+            <ul id="cartItems"></ul>
+            <p id="totalPrice">Total: $0.00</p>
+            <button class="order-button" onclick="placeOrder()">Order</button>
+            <p id="successMessage" class="success-message"></p>
+            <button onclick="clearCart()">Clear Cart</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 ShopGlam. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let total = 0;
+
+        function displayCart() {
+            const cartItems = document.getElementById('cartItems');
+            cartItems.innerHTML = '';
+
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+                cartItems.appendChild(li);
+                total += item.price;
+            });
+
+            document.getElementById('totalPrice').textContent = `Total: $${total.toFixed(2)}`;
+        }
+
+        function clearCart() {
+            localStorage.removeItem('cart');
+            cart = [];
+            total = 0;
+            displayCart();
+        }
+
+        function placeOrder() {
+            if (cart.length === 0) {
+                alert("Your cart is empty!"); // Alert if cart is empty
+                return;
+            }
+
+            // Show success message
+            document.getElementById('successMessage').textContent = "Order placed successfully!";
+            clearCart(); // Clear cart after ordering
+        }
+
+        // Display cart on page load
+        displayCart();
+    </script>
+</body>
+</html>
